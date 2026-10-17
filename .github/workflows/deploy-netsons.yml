@@ -35,5 +35,3 @@ jobs:
           protocol: ftps
           local-dir: ./dist/
           server-dir: ${{ vars.NETSONS_FTP_DIR || 'public_html/' }}
-          exclude: |
-            **/staticwebapp.config.json

@@ -17,7 +17,6 @@ npm run build    # output in dist/
 - `src/main.js` — smooth scroll, animazioni allo scroll, selettore vernice, form preventivo
 - `src/style.css` — stile (font self-hosted, nessuna richiesta a Google Fonts)
 - `public/` — immagini, favicon, `.htaccess` (Apache), robots, sitemap
-- `public/staticwebapp.config.json` — solo per Azure, ignorato su Netsons
 
 ## Pubblicazione su Netsons
 
@@ -44,11 +43,6 @@ Resta disattivato finché non si impostano, in GitHub → *Settings → Secrets 
 | Secret | `NETSONS_FTP_PASSWORD` | password dell'account FTP |
 
 I vecchi indirizzi (`servizi.htm`, `contatti.htm`, `dovesiamo.htm`) sono reindirizzati con 301 dal `.htaccess`.
-
-### Azure (facoltativo)
-
-Il workflow `azure-static-web-apps.yml` pubblica ancora la copia su Azure Static Web Apps.
-Se Azure non serve più: eliminare quel file e la risorsa dal portale Azure.
 
 ## Da completare
 

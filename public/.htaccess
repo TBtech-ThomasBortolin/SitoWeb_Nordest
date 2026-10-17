@@ -61,6 +61,6 @@ ErrorDocument 404 /index.html
 </IfModule>
 
 # Non servire file di configurazione
-<FilesMatch "^(staticwebapp\.config\.json|\.git.*)$">
+<FilesMatch "^\.git">
   Require all denied
 </FilesMatch>
