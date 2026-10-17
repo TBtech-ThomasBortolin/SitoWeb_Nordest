@@ -1,0 +1,39 @@
+name: Deploy su Netsons (FTP)
+
+# Parte a ogni push su main, ma solo dopo aver impostato nel repo:
+#   Settings → Secrets and variables → Actions
+#   - Variables: NETSONS_FTP_SERVER, NETSONS_FTP_USERNAME (e facoltativa NETSONS_FTP_DIR, default "public_html/")
+#   - Secrets:   NETSONS_FTP_PASSWORD
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-netsons
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: vars.NETSONS_FTP_SERVER != ''
+    runs-on: ubuntu-latest
+    name: Build e upload FTP
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Upload su Netsons
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ vars.NETSONS_FTP_SERVER }}
+          username: ${{ vars.NETSONS_FTP_USERNAME }}
+          password: ${{ secrets.NETSONS_FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./dist/
+          server-dir: ${{ vars.NETSONS_FTP_DIR || 'public_html/' }}
+          exclude: |
+            **/staticwebapp.config.json

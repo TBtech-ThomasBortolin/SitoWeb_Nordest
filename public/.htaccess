@@ -1,0 +1,66 @@
+# Carrozzeria Nord Est — configurazione Apache (hosting Netsons)
+
+Options -Indexes
+DirectoryIndex index.html
+AddDefaultCharset UTF-8
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # HTTPS obbligatorio (attivare prima il certificato SSL gratuito dal pannello Netsons)
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
+
+  # carrozzerianordest.it -> www.carrozzerianordest.it (indirizzo canonico)
+  RewriteCond %{HTTP_HOST} ^carrozzerianordest\.it$ [NC]
+  RewriteRule ^ https://www.carrozzerianordest.it%{REQUEST_URI} [L,R=301,NE]
+
+  # Vecchie pagine del sito precedente -> nuove sezioni
+  RewriteRule ^index\.htm$ / [L,R=301]
+  RewriteRule ^servizi\.htm$ /#servizi [L,R=301,NE]
+  RewriteRule ^dovesiamo\.htm$ /#dove-siamo [L,R=301,NE]
+  RewriteRule ^contatti\.htm$ /#contatti [L,R=301,NE]
+</IfModule>
+
+ErrorDocument 404 /index.html
+
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+  AddType font/woff2 .woff2
+  AddType application/manifest+json .webmanifest
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json image/svg+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 hour"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+</IfModule>
+
+<IfModule mod_headers.c>
+  # i file in /assets hanno l'hash nel nome: si possono tenere in cache per sempre
+  <FilesMatch "\.(js|css|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src https://www.google.com https://maps.google.com; connect-src 'self'"
+</IfModule>
+
+# Non servire file di configurazione
+<FilesMatch "^(staticwebapp\.config\.json|\.git.*)$">
+  Require all denied
+</FilesMatch>
