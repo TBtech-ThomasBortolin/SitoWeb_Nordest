@@ -123,7 +123,7 @@ function intro() {
     .from('.hero__scroll', { opacity: 0, duration: 1 }, '-=0.6');
   if (world && !reduced) {
     tl.fromTo(choreo, { intro: 0 }, { intro: 1, duration: 2.2, ease: 'expo.out' }, 0.2);
-    tl.from(world.uniforms.uAmp, { value: 0.7, duration: 2.6, ease: 'elastic.out(1, 0.4)' }, 0.3);
+    tl.from(world.state, { spin: -Math.PI * 0.8, duration: 2.6, ease: 'expo.out' }, 0.2);
   }
 }
 
@@ -246,17 +246,17 @@ function worldScroll() {
       const t = choreo.techIn;
       // in alto a destra, accanto al titolo della sezione
       // desktop: in alto a destra accanto al titolo; mobile: dietro ai pannelli in vetro
-      x = small ? 0.4 : L.x * 1.38;
-      y = mix(4.5, small ? -0.9 : 1.75, t);
-      scale = mix(0.3, small ? 0.55 : 0.6, t);
+      x = small ? 0 : L.x * 1.25;
+      y = mix(4.5, small ? -1.1 : 1.95, t);
+      scale = mix(0.3, small ? 0.34 : 0.5, t);
       laser = t;
       rings = mix(1, 0.25, t);
       rotY = mix(1.2, 2.4, t) + choreo.tech * 2.6;
     } else {
       const h = choreo.hero;
       x = mix(L.x, small ? 0 : 1.2, h);
-      y = mix(L.y, -2.5, h);
-      scale = mix(L.scale, small ? 1 : 1.35, h);
+      y = mix(L.y, -2.2, h);
+      scale = mix(L.scale, small ? 0.7 : 1.2, h);
       rotY = 1.2 * h;
       laser = 0;
       rings = 1;
