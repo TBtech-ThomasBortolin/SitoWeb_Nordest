@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carrozzeria Nord Est di Greatti Ivan · Remanzacco (UD)</title>
+  <meta name="description" content="Carrozzeria Nord Est di Greatti Ivan a Remanzacco (UD): riparazione veicoli incidentati, verniciatura in cabina, danni da grandine, soccorso stradale, sostituzione cristalli e gestione pratiche assicurative. Chiama lo 0432 668094." />
+  <meta name="theme-color" content="#0b0d10" />
+  <link rel="canonical" href="https://www.carrozzerianordest.it/" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:title" content="Carrozzeria Nord Est · Remanzacco (UD)" />
+  <meta property="og:description" content="Riparazioni, verniciatura, grandine, soccorso stradale e pratiche assicurative. A pochi metri dalla SS54 Udine–Cividale." />
+  <meta property="og:url" content="https://www.carrozzerianordest.it/" />
+  <meta property="og:image" content="https://www.carrozzerianordest.it/og-image.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoBodyShop",
+    "name": "Carrozzeria Nord Est di Greatti Ivan",
+    "url": "https://www.carrozzerianordest.it/",
+    "image": "https://www.carrozzerianordest.it/img/sede.webp",
+    "telephone": "+39 0432 668094",
+    "email": "info@carrozzerianordest.it",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Via Strada Oselin 39/15",
+      "addressLocality": "Remanzacco",
+      "addressRegion": "UD",
+      "postalCode": "33047",
+      "addressCountry": "IT"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 46.088829, "longitude": 13.299809 },
+    "founder": { "@type": "Person", "name": "Ivan Greatti" },
+    "areaServed": ["Remanzacco", "Udine", "Cividale del Friuli", "Friuli Venezia Giulia"]
+  }
+  </script>
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body>
+  <a class="skip" href="#contenuto">Salta al contenuto</a>
+
+  <!-- Unico canvas WebGL per tutta la pagina -->
+  <canvas id="scene" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="loader" aria-hidden="true">
+    <div class="loader__bar"><span></span></div>
+    <p class="loader__txt mono">Preparazione vernice<span class="loader__pct">0</span>%</p>
+  </div>
+
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__brand" aria-label="Carrozzeria Nord Est, torna all'inizio">
+      <svg class="nav__logo" viewBox="0 0 48 48" aria-hidden="true"><use href="#logo-mark" /></svg>
+      <span class="nav__name">Nord&nbsp;Est<small>Carrozzeria</small></span>
+    </a>
+    <nav class="nav__links" aria-label="Principale">
+      <a href="#chi-siamo">Chi siamo</a>
+      <a href="#servizi">Servizi</a>
+      <a href="#tecnologie">Tecnologie</a>
+      <a href="#dove-siamo">Dove siamo</a>
+      <a href="#contatti">Contatti</a>
+    </nav>
+    <a class="btn btn--sm btn--red nav__cta" href="tel:+390432668094">
+      <svg class="ico" aria-hidden="true"><use href="#i-phone" /></svg>
+      <span>0432 668094</span>
+    </a>
+    <button class="nav__burger" aria-label="Apri menu" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <div class="menu" id="menu" hidden>
+    <nav aria-label="Menu mobile">
+      <a href="#chi-siamo">Chi siamo</a>
+      <a href="#servizi">Servizi</a>
+      <a href="#tecnologie">Tecnologie</a>
+      <a href="#dove-siamo">Dove siamo</a>
+      <a href="#contatti">Contatti</a>
+    </nav>
+    <div class="menu__foot">
+      <a class="btn btn--red" href="tel:+390432668094">Chiama 0432 668094</a>
+      <a class="btn btn--ghost" href="tel:+393334603711">Cell. 333 4603711</a>
+    </div>
+  </div>
+
+  <main id="contenuto">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero__inner wrap">
+        <p class="eyebrow mono reveal-up">Remanzacco · Udine · dal cuore del Friuli</p>
+        <h1 class="hero__title" aria-label="Carrozzeria Nord Est">
+          <span class="line"><span class="split">Carrozzeria</span></span>
+          <span class="line"><span class="split split--red">Nord Est</span></span>
+        </h1>
+        <p class="hero__lead reveal-up">
+          Riportiamo la tua auto com'era. Anzi, meglio.<br />
+          Riparazioni, verniciatura in cabina e soccorso stradale — con cortesia, professionalità e un buon caffè.
+        </p>
+        <div class="hero__cta reveal-up">
+          <a class="btn btn--red magnetic" href="#contatti">
+            Richiedi un preventivo
+            <svg class="ico" aria-hidden="true"><use href="#i-arrow" /></svg>
+          </a>
+          <a class="btn btn--ghost magnetic" href="tel:+393334603711">
+            <svg class="ico" aria-hidden="true"><use href="#i-tow" /></svg>
+            Soccorso stradale
+          </a>
+        </div>
+
+        <div class="paint reveal-up" role="group" aria-label="Scegli un colore di vernice per l'animazione">
+          <span class="paint__label mono">Prova la vernice</span>
+          <div class="paint__swatches">
+            <button class="swatch is-active" style="--c:#c8102e" data-color="#c8102e" aria-label="Rosso corsa" aria-pressed="true"></button>
+            <button class="swatch" style="--c:#0f2a5c" data-color="#0f2a5c" aria-label="Blu notte" aria-pressed="false"></button>
+            <button class="swatch" style="--c:#d7dbe0" data-color="#d7dbe0" aria-label="Argento metallizzato" aria-pressed="false"></button>
+            <button class="swatch" style="--c:#f2b705" data-color="#f2b705" aria-label="Giallo Cricchetto" aria-pressed="false"></button>
+            <button class="swatch" style="--c:#121417" data-color="#121417" aria-label="Nero pastello" aria-pressed="false"></button>
+          </div>
+          <span class="paint__name mono" aria-live="polite">Rosso corsa</span>
+        </div>
+      </div>
+      <a href="#chi-siamo" class="hero__scroll mono" aria-label="Scorri verso Chi siamo">
+        <span>Scorri</span><i></i>
+      </a>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Riparazione incidentati</span><b>✦</b><span>Verniciatura</span><b>✦</b><span>Danni da grandine</span><b>✦</b><span>Soccorso stradale</span><b>✦</b><span>Cristalli</span><b>✦</b><span>Pratiche assicurative</span><b>✦</b><span>Auto sostitutive</span><b>✦</b>
+        <span>Riparazione incidentati</span><b>✦</b><span>Verniciatura</span><b>✦</b><span>Danni da grandine</span><b>✦</b><span>Soccorso stradale</span><b>✦</b><span>Cristalli</span><b>✦</b><span>Pratiche assicurative</span><b>✦</b><span>Auto sostitutive</span><b>✦</b>
+      </div>
+    </div>
+
+    <!-- CHI SIAMO -->
+    <section class="about section" id="chi-siamo">
+      <div class="wrap about__grid">
+        <div class="about__text">
+          <p class="eyebrow mono reveal-up">01 — Chi siamo</p>
+          <h2 class="h2 reveal-words">Esperienza di bottega, tecnologia di oggi.</h2>
+          <p class="reveal-up">
+            La carrozzeria <strong>Nord Est</strong> di Ivan Greatti opera da anni sul territorio nel settore dell'autocarrozzeria.
+            L'esperienza maturata, unita alle tecnologie più moderne, garantisce servizi di qualità ed efficienza.
+          </p>
+          <p class="reveal-up">
+            Il nostro personale è qualificato e pronto a consigliarti l'intervento migliore per il tuo mezzo.
+            La sede è di moderna realizzazione, con ampio parcheggio, a pochi metri dalla statale <strong>SS54 Udine–Cividale</strong>.
+          </p>
+          <ul class="perks">
+            <li class="perk reveal-up"><svg class="ico" aria-hidden="true"><use href="#i-shield" /></svg><span>Garanzia sugli interventi</span></li>
+            <li class="perk reveal-up"><svg class="ico" aria-hidden="true"><use href="#i-doc" /></svg><span>Pratiche assicurative gestite da noi</span></li>
+            <li class="perk reveal-up"><svg class="ico" aria-hidden="true"><use href="#i-car" /></svg><span>Auto sostitutive</span></li>
+            <li class="perk reveal-up"><svg class="ico" aria-hidden="true"><use href="#i-coffee" /></svg><span>Il caffè lo offrono i titolari</span></li>
+          </ul>
+        </div>
+        <div class="about__media">
+          <figure class="photo photo--tall tilt" data-depth="1">
+            <img src="/img/officina.webp" alt="L'officina interna della Carrozzeria Nord Est con ponti sollevatori" width="588" height="364" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="photo photo--small tilt" data-depth="1.6">
+            <img src="/img/sede.webp" alt="Esterno della sede di Remanzacco con l'insegna Carrozzeria" width="588" height="496" loading="lazy" decoding="async" />
+          </figure>
+          <div class="badge3d" aria-hidden="true">
+            <div class="badge3d__ring"><svg viewBox="0 0 24 24"><use href="#i-coffee" /></svg></div>
+            <svg class="badge3d__txt" viewBox="0 0 128 128">
+              <defs><path id="badge-circle" d="M64,64 m-50,0 a50,50 0 1,1 100,0 a50,50 0 1,1 -100,0" /></defs>
+              <text><textPath href="#badge-circle" textLength="312">CORTESIA · PROFESSIONALITÀ · CAFFÈ ·</textPath></text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVIZI -->
+    <section class="services section" id="servizi">
+      <div class="wrap">
+        <div class="section__head">
+          <p class="eyebrow mono reveal-up">02 — Servizi</p>
+          <h2 class="h2 reveal-words">Tutto quello che serve alla tua auto, in un solo posto.</h2>
+        </div>
+        <ul class="cards">
+          <li class="card tilt">
+            <svg class="card__ico" aria-hidden="true"><use href="#i-tow" /></svg>
+            <h3>Soccorso stradale</h3>
+            <p>Con il nostro carro attrezzi interveniamo e portiamo il mezzo direttamente in carrozzeria.</p>
+            <span class="card__n mono">01</span>
+          </li>
+          <li class="card tilt">
+            <svg class="card__ico" aria-hidden="true"><use href="#i-wrench" /></svg>
+            <h3>Riparazione incidentati</h3>
+            <p>Lattoneria, raddrizzatura e ripristino strutturale su banco di riscontro laser.</p>
+            <span class="card__n mono">02</span>
+          </li>
+          <li class="card tilt">
+            <svg class="card__ico" aria-hidden="true"><use href="#i-hail" /></svg>
+            <h3>Danni da grandine</h3>
+            <p>Riparazione con tecnica levabolli, senza riverniciare quando possibile.</p>
+            <span class="card__n mono">03</span>
+          </li>
+          <li class="card tilt">
+            <svg class="card__ico" aria-hidden="true"><use href="#i-glass" /></svg>
+            <h3>Sostituzione cristalli</h3>
+            <p>Parabrezza, lunotti e vetri laterali sostituiti a regola d'arte.</p>
+            <span class="card__n mono">04</span>
+          </li>
+          <li class="card tilt">
+            <svg class="card__ico" aria-hidden="true"><use href="#i-spark" /></svg>
+            <h3>Lucidatura completa</h3>
+            <p>Carrozzeria riportata a specchio, per un'auto che sembra appena uscita dal salone.</p>
+            <span class="card__n mono">05</span>
+          </li>
+          <li class="card tilt">
+            <svg class="card__ico" aria-hidden="true"><use href="#i-seat" /></svg>
+            <h3>Pulizia interni</h3>
+            <p>Sedili, tappezzeria e abitacolo igienizzati con cura.</p>
+            <span class="card__n mono">06</span>
+          </li>
+          <li class="card tilt">
+            <svg class="card__ico" aria-hidden="true"><use href="#i-check" /></svg>
+            <h3>Preparazione collaudi</h3>
+            <p>Verifichiamo e sistemiamo il veicolo prima della revisione.</p>
+            <span class="card__n mono">07</span>
+          </li>
+          <li class="card tilt">
+            <svg class="card__ico" aria-hidden="true"><use href="#i-doc" /></svg>
+            <h3>Pratiche assicurative</h3>
+            <p>Ci occupiamo noi delle pratiche con l'assicurazione: tu pensi solo a ritirare l'auto.</p>
+            <span class="card__n mono">08</span>
+          </li>
+          <li class="card tilt">
+            <svg class="card__ico" aria-hidden="true"><use href="#i-car" /></svg>
+            <h3>Auto sostitutive</h3>
+            <p>Non resti a piedi: durante la riparazione ti diamo un'auto sostitutiva.</p>
+            <span class="card__n mono">09</span>
+          </li>
+          <li class="card card--red tilt">
+            <svg class="card__ico" aria-hidden="true"><use href="#i-shield" /></svg>
+            <h3>Garanzia sugli interventi</h3>
+            <p>Ogni lavoro eseguito è garantito. Perché ci mettiamo la faccia.</p>
+            <span class="card__n mono">10</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TECNOLOGIE (pin + orizzontale) -->
+    <section class="tech" id="tecnologie">
+      <div class="tech__pin">
+        <div class="wrap tech__head">
+          <p class="eyebrow mono">03 — Tecnologie</p>
+          <h2 class="h2">Attrezzature di ultima generazione.</h2>
+        </div>
+        <div class="tech__track">
+          <article class="tech__panel">
+            <span class="tech__idx mono">A</span>
+            <div class="tech__body">
+              <h3>Cabina di verniciatura</h3>
+              <p>Ambiente pressurizzato e filtrato: la vernice si stende senza polvere, con una finitura uniforme e brillante identica all'originale.</p>
+            </div>
+            <figure class="tech__img"><img src="/img/cabina-verniciatura.webp" alt="Cabina di verniciatura Polin della carrozzeria" width="762" height="642" loading="lazy" decoding="async" /></figure>
+          </article>
+          <article class="tech__panel">
+            <span class="tech__idx mono">B</span>
+            <div class="tech__body">
+              <h3>Banco laser</h3>
+              <p>Misura al millimetro le quote del telaio e guida la raddrizzatura: la geometria torna esattamente quella di fabbrica.</p>
+            </div>
+            <div class="tech__viz tech__viz--laser" aria-hidden="true"><i></i><i></i><i></i></div>
+          </article>
+          <article class="tech__panel">
+            <span class="tech__idx mono">C</span>
+            <div class="tech__body">
+              <h3>Forno computerizzato</h3>
+              <p>Essiccazione a temperatura controllata elettronicamente: vernici più resistenti e tempi di consegna più rapidi.</p>
+            </div>
+            <div class="tech__viz tech__viz--heat" aria-hidden="true"><span class="mono">60°C</span></div>
+          </article>
+          <article class="tech__panel">
+            <span class="tech__idx mono">D</span>
+            <div class="tech__body">
+              <h3>Carro attrezzi</h3>
+              <p>Il nostro "Cricchetto" è pronto a recuperare il tuo veicolo e portarlo in carrozzeria.</p>
+              <a class="btn btn--red btn--sm" href="tel:+393334603711">
+                <svg class="ico" aria-hidden="true"><use href="#i-phone" /></svg> 333 4603711
+              </a>
+            </div>
+            <figure class="tech__img"><img src="/img/carro-attrezzi.webp" alt="Il carro attrezzi giallo Cricchetto della carrozzeria" width="588" height="546" loading="lazy" decoding="async" /></figure>
+          </article>
+        </div>
+        <div class="tech__progress" aria-hidden="true"><span></span></div>
+      </div>
+    </section>
+
+    <!-- PROCESSO -->
+    <section class="process section" id="come-lavoriamo">
+      <div class="wrap">
+        <div class="section__head">
+          <p class="eyebrow mono reveal-up">04 — Come lavoriamo</p>
+          <h2 class="h2 reveal-words">Dal danno alla riconsegna, senza pensieri.</h2>
+        </div>
+        <ol class="steps">
+          <li class="step"><span class="step__n">1</span><div><h3>Ritiro o accettazione</h3><p>Porti l'auto in sede o veniamo noi a prenderla con il carro attrezzi.</p></div></li>
+          <li class="step"><span class="step__n">2</span><div><h3>Valutazione e pratica</h3><p>Analizziamo il danno, ti consigliamo la soluzione migliore e gestiamo l'assicurazione.</p></div></li>
+          <li class="step"><span class="step__n">3</span><div><h3>Riparazione</h3><p>Lattoneria e ripristino su banco laser. Intanto guidi l'auto sostitutiva.</p></div></li>
+          <li class="step"><span class="step__n">4</span><div><h3>Verniciatura</h3><p>In cabina, con essiccazione nel forno computerizzato.</p></div></li>
+          <li class="step"><span class="step__n">5</span><div><h3>Riconsegna garantita</h3><p>Auto lucidata, interni puliti e garanzia sul lavoro. E il caffè.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- DOVE SIAMO -->
+    <section class="where section" id="dove-siamo">
+      <div class="wrap where__grid">
+        <div>
+          <p class="eyebrow mono reveal-up">05 — Dove siamo</p>
+          <h2 class="h2 reveal-words">A due passi dalla statale Udine–Cividale.</h2>
+          <address class="where__addr reveal-up">
+            Via Strada Oselin 39/15<br />33047 Remanzacco (UD)
+          </address>
+          <ol class="route reveal-up">
+            <li>Da Udine prendi la <strong>SS54</strong> (via Cividale) in direzione Cividale.</li>
+            <li>Al primo incrocio dopo il ponte sul torrente Torre gira a <strong>destra</strong> in via Strada Oselin.</li>
+            <li>Superato il passaggio a livello, percorri circa 200&nbsp;m, svolta a <strong>sinistra</strong> e prendi la prima a sinistra.</li>
+          </ol>
+          <a class="btn btn--ghost reveal-up" href="https://www.google.com/maps/dir/?api=1&destination=46.088829,13.299809" target="_blank" rel="noopener">
+            <svg class="ico" aria-hidden="true"><use href="#i-pin" /></svg>
+            Apri le indicazioni in Google Maps
+          </a>
+        </div>
+        <div class="map reveal-up">
+          <div class="map__placeholder">
+            <svg class="map__pin" aria-hidden="true"><use href="#i-pin" /></svg>
+            <p>La mappa è fornita da Google e carica cookie di terze parti.</p>
+            <button class="btn btn--red btn--sm" id="loadMap">Mostra la mappa</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATTI -->
+    <section class="contact section" id="contatti">
+      <div class="wrap">
+        <div class="section__head">
+          <p class="eyebrow mono reveal-up">06 — Contatti</p>
+          <h2 class="h2 reveal-words">Hai un danno? Chiamaci, ci pensiamo noi.</h2>
+        </div>
+        <div class="contact__grid">
+          <div class="contact__cards">
+            <a class="ccard tilt" href="tel:+390432668094">
+              <svg class="ico" aria-hidden="true"><use href="#i-phone" /></svg>
+              <span class="ccard__k mono">Telefono / Fax</span>
+              <span class="ccard__v">0432 668094</span>
+            </a>
+            <a class="ccard tilt" href="tel:+393334603711">
+              <svg class="ico" aria-hidden="true"><use href="#i-mobile" /></svg>
+              <span class="ccard__k mono">Cellulare</span>
+              <span class="ccard__v">333 4603711</span>
+            </a>
+            <a class="ccard tilt" href="mailto:info@carrozzerianordest.it">
+              <svg class="ico" aria-hidden="true"><use href="#i-mail" /></svg>
+              <span class="ccard__k mono">E-mail</span>
+              <span class="ccard__v">info@carrozzerianordest.it</span>
+            </a>
+            <a class="ccard tilt" href="mailto:carrozzerianordest.udine@gmail.com">
+              <svg class="ico" aria-hidden="true"><use href="#i-mail" /></svg>
+              <span class="ccard__k mono">E-mail alternativa</span>
+              <span class="ccard__v">carrozzerianordest.udine@gmail.com</span>
+            </a>
+          </div>
+
+          <form class="quote" id="quote" novalidate>
+            <h3>Richiesta di preventivo</h3>
+            <p class="quote__hint">Compila i campi: si aprirà la tua app e-mail con il messaggio già pronto.</p>
+            <div class="field">
+              <label for="q-name">Nome e cognome</label>
+              <input id="q-name" name="name" autocomplete="name" required />
+              <p class="field__err" id="q-name-err" hidden>Inserisci il tuo nome.</p>
+            </div>
+            <div class="field">
+              <label for="q-phone">Telefono</label>
+              <input id="q-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required />
+              <p class="field__err" id="q-phone-err" hidden>Inserisci un numero per ricontattarti.</p>
+            </div>
+            <div class="field">
+              <label for="q-car">Auto (marca e modello)</label>
+              <input id="q-car" name="car" placeholder="es. Fiat Punto" />
+            </div>
+            <div class="field">
+              <label for="q-type">Tipo di intervento</label>
+              <select id="q-type" name="type">
+                <option>Riparazione da incidente</option>
+                <option>Danni da grandine</option>
+                <option>Verniciatura</option>
+                <option>Sostituzione cristalli</option>
+                <option>Lucidatura / pulizia interni</option>
+                <option>Preparazione collaudo</option>
+                <option>Altro</option>
+              </select>
+            </div>
+            <div class="field field--full">
+              <label for="q-msg">Descrivi il danno</label>
+              <textarea id="q-msg" name="msg" rows="4"></textarea>
+            </div>
+            <button class="btn btn--red magnetic" type="submit">
+              Prepara la richiesta
+              <svg class="ico" aria-hidden="true"><use href="#i-arrow" /></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot__grid">
+      <div class="foot__brand">
+        <svg class="foot__logo" viewBox="0 0 48 48" aria-hidden="true"><use href="#logo-mark" /></svg>
+        <p><strong>Carrozzeria Nord Est</strong><br />di Greatti Ivan</p>
+      </div>
+      <p>Via Strada Oselin 39/15<br />33047 Remanzacco (UD)</p>
+      <p><a href="tel:+390432668094">Tel. 0432 668094</a><br /><a href="tel:+393334603711">Cell. 333 4603711</a></p>
+      <!-- TODO: inserire la Partita IVA reale (obbligatoria per legge sul sito) -->
+      <p class="foot__legal mono">P.IVA [da inserire]<br />© <span id="year">2026</span> Carrozzeria Nord Est</p>
+    </div>
+    <p class="foot__big" aria-hidden="true">NORD EST</p>
+  </footer>
+
+  <!-- Icone SVG (stile Lucide, stroke) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="g-chrome" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#ffffff" /><stop offset=".45" stop-color="#c9ced6" /><stop offset=".55" stop-color="#6b727c" /><stop offset="1" stop-color="#e6e9ee" />
+      </linearGradient>
+      <linearGradient id="g-red" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#ff5a6a" /><stop offset=".5" stop-color="#e11d2e" /><stop offset="1" stop-color="#7a0a16" />
+      </linearGradient>
+    </defs>
+    <symbol id="logo-mark" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="22" fill="none" stroke="url(#g-chrome)" stroke-width="2.5" />
+      <path d="M24 7 L29 24 L24 41 L19 24 Z" fill="url(#g-red)" />
+      <path d="M24 7 L29 24 L24 24 Z" fill="#fff" opacity=".35" />
+      <path d="M41 24 L24 29 L7 24 L24 19 Z" fill="url(#g-chrome)" opacity=".55" />
+      <text x="24" y="5.2" font-size="5" text-anchor="middle" fill="#fff" font-family="Space Mono, monospace" font-weight="700">N</text>
+    </symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-mobile" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-tow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17V9h7l3 4h4V8l5 5v4h-2"/><circle cx="6" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M8 17h7"/><path d="M16 8 21 3"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+    <symbol id="i-hail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.9A7 7 0 1 1 15.7 8h1.8a4.5 4.5 0 0 1 2.5 8.2"/><circle cx="8" cy="19" r="1"/><circle cx="12" cy="21" r="1"/><circle cx="16" cy="19" r="1"/></symbol>
+    <symbol id="i-glass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 5 7h14l2 10Z"/><path d="m9 10-2 4"/><path d="m13 10-3 5"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 13.9 8.1 19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9Z"/><path d="M19 17v4"/><path d="M17 19h4"/></symbol>
+    <symbol id="i-seat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h5a2 2 0 0 1 2 2l-1 9H6L5 5a2 2 0 0 1 2-2Z"/><path d="M6 14h11a2 2 0 0 1 2 2v2H6"/><path d="M8 18v3"/><path d="M17 18v3"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></symbol>
+    <symbol id="i-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9L18 10l-2.7-3.6A2 2 0 0 0 13.7 6H8.4a2 2 0 0 0-1.7.9L4 10l-1.6.5C1.6 10.8 1 11.5 1 12.4V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M9 17h6"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-coffee" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><path d="M6 2v2"/><path d="M10 2v2"/><path d="M14 2v2"/></symbol>
+  </svg>
+</body>
+</html>
