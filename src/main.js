@@ -350,7 +350,7 @@ form.addEventListener('submit', (e) => {
     String(f.get('msg') || ''),
   ].join('\n');
   const subject = `Richiesta preventivo - ${f.get('type')}`;
-  window.location.href = `mailto:info@carrozzerianordest.it?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = `mailto:carrozzerianordest.udine@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 });
 
 /* ---------- Avvio ---------- */

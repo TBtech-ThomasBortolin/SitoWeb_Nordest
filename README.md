@@ -32,6 +32,5 @@ I vecchi indirizzi (`servizi.htm`, `contatti.htm`, `dovesiamo.htm`) sono reindir
 
 ## Da completare
 
-- [ ] **Partita IVA** nel footer (`index.html`, cerca `P.IVA [da inserire]`) — obbligatoria per legge.
 - [ ] Foto nuove in alta risoluzione (le attuali vengono dal vecchio sito, 300px).
 - [ ] Verificare il CAP (33047) e gli orari di apertura, se si vogliono aggiungere.

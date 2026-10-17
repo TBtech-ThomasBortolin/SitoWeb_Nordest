@@ -432,7 +432,7 @@ main { overflow-x: clip; }
 .ccard .ico { width: 26px; height: 26px; color: var(--red-hi); margin-bottom: auto; }
 .ccard__k { font-size: .7rem; text-transform: uppercase; color: var(--muted); }
 .ccard__v { font-weight: 700; font-size: 1.1rem; }
-.ccard:nth-child(n+3) .ccard__v { font-size: .95rem; }
+.ccard--wide { grid-column: 1 / -1; }
 
 .quote {
   display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: clamp(22px, 3vw, 36px);
