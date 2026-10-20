@@ -322,7 +322,7 @@ function interactions() {
 /* ---------- Mappa (consenso al click) ---------- */
 $('#loadMap').addEventListener('click', () => {
   const map = $('.map');
-  map.innerHTML = '<iframe title="Mappa: Carrozzeria Nord Est, Via Strada Oselin 39/15, Remanzacco" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=46.088829,13.299809&z=15&output=embed"></iframe>';
+  map.innerHTML = '<iframe title="Mappa: Carrozzeria Nord Est, Via Strada Oselin 39/15, Remanzacco" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Carrozzeria+Nord+Est+di+Greatti+Ivan,+Via+Strada+Oselin+39/15,+33047+Remanzacco+UD&ll=46.0764238,13.3026326&z=16&hl=it&output=embed"></iframe>';
 });
 
 /* ---------- Form preventivo → e-mail precompilata ---------- */
