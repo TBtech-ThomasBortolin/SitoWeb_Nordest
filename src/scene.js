@@ -288,7 +288,7 @@ function loadStelvio(paint, onProgress) {
     rubber: new THREE.MeshStandardMaterial({ color: 0x0b0b0c, roughness: 0.82, metalness: 0 }),
     rim: new THREE.MeshPhysicalMaterial({ color: 0xc9ced6, metalness: 1, roughness: 0.22, clearcoat: 0.5, envMapIntensity: 1.5 }),
     dark: new THREE.MeshPhysicalMaterial({ color: 0x0d0e10, metalness: 0.4, roughness: 0.35, clearcoat: 0.6 }),
-    head: new THREE.MeshPhysicalMaterial({ color: 0xdfe6ee, emissive: 0xcfe3ff, emissiveIntensity: 0.55, metalness: 0.2, roughness: 0.1, clearcoat: 1 }),
+    head: paint, // fari anteriori in tinta carrozzeria
     tail: new THREE.MeshPhysicalMaterial({ color: 0x8a0010, emissive: 0xff1a2e, emissiveIntensity: 1.8, roughness: 0.2, clearcoat: 1 }),
   };
   const loader = new GLTFLoader();
