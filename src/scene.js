@@ -2,6 +2,12 @@ import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
 import { TessellateModifier } from 'three/examples/jsm/modifiers/TessellateModifier.js';
 import { mergeVertices } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
+
+// Modello "Alfa Romeo Stelvio" di EDOTONY (MakerWorld), licenza CC BY-SA 4.0.
+// Convertito da 3MF, diviso in parti per materiale e alleggerito: vedi README.
+const STELVIO_URL = '/models/stelvio.glb';
 
 // Ambiente "cabina di verniciatura": stanza scura con strisce di luce a soffitto e
 // pannelli laterali, per riflessi lunghi e netti come sulla carrozzeria lucida.
@@ -274,6 +280,38 @@ function buildCar(paint) {
   return { car };
 }
 
+function loadStelvio(paint, onProgress) {
+  const glass = new THREE.MeshPhysicalMaterial({ color: 0x07090c, metalness: 0.1, roughness: 0.04, clearcoat: 1, clearcoatRoughness: 0.02, envMapIntensity: 1.7 });
+  const materials = {
+    paint,
+    glass,
+    rubber: new THREE.MeshStandardMaterial({ color: 0x0b0b0c, roughness: 0.82, metalness: 0 }),
+    rim: new THREE.MeshPhysicalMaterial({ color: 0xc9ced6, metalness: 1, roughness: 0.22, clearcoat: 0.5, envMapIntensity: 1.5 }),
+    dark: new THREE.MeshPhysicalMaterial({ color: 0x0d0e10, metalness: 0.4, roughness: 0.35, clearcoat: 0.6 }),
+    head: new THREE.MeshPhysicalMaterial({ color: 0xdfe6ee, emissive: 0xcfe3ff, emissiveIntensity: 0.55, metalness: 0.2, roughness: 0.1, clearcoat: 1 }),
+    tail: new THREE.MeshPhysicalMaterial({ color: 0x8a0010, emissive: 0xff1a2e, emissiveIntensity: 1.8, roughness: 0.2, clearcoat: 1 }),
+  };
+  const loader = new GLTFLoader();
+  loader.setMeshoptDecoder(MeshoptDecoder);
+  return new Promise((resolve, reject) => {
+    loader.load(STELVIO_URL, (gltf) => {
+      const car = gltf.scene;
+      car.traverse((o) => {
+        if (!o.isMesh) return;
+        const key = o.material?.name || o.name;
+        o.material = materials[key] || paint;
+      });
+      // centra in lunghezza/larghezza, suolo a y = 0, poi come l'auto procedurale
+      const box = new THREE.Box3().setFromObject(car);
+      const c = box.getCenter(new THREE.Vector3());
+      car.position.set(-c.x, -box.min.y - 0.8, -c.z);
+      const wrap = new THREE.Group();
+      wrap.add(car);
+      resolve(wrap);
+    }, (e) => { if (e.total) onProgress?.(e.loaded / e.total); }, reject);
+  });
+}
+
 export function createScene(canvas, { reducedMotion = false, onProgress } = {}) {
   let renderer;
   try {
@@ -315,7 +353,6 @@ export function createScene(canvas, { reducedMotion = false, onProgress } = {}) 
     envMapIntensity: 1.25,
   });
 
-  const { car } = buildCar(paint);
 
   // Pedana girevole da showroom
   const deck = new THREE.Group();
@@ -378,7 +415,16 @@ export function createScene(canvas, { reducedMotion = false, onProgress } = {}) 
 
   // turntable = auto + laser (ruotano insieme); rig = tutto, guidato dallo scroll
   const turntable = new THREE.Group();
-  turntable.add(car, laser, laserGlow);
+  const carSlot = new THREE.Group();
+  turntable.add(carSlot, laser, laserGlow);
+  // Stelvio dal file 3D; se non si carica, resta l'auto modellata a codice
+  const ready = loadStelvio(paint, (p) => onProgress?.(0.7 + p * 0.3))
+    .then((car) => carSlot.add(car))
+    .catch((err) => {
+      console.warn('Modello Stelvio non caricato, uso quello procedurale', err);
+      carSlot.add(buildCar(paint).car);
+    })
+    .then(() => renderer.compile(scene, camera));
   const rig = new THREE.Group();
   rig.add(turntable, deck, points);
   rig.rotation.x = 0.22; // vista leggermente dall'alto
@@ -430,7 +476,7 @@ export function createScene(canvas, { reducedMotion = false, onProgress } = {}) 
     rig.rotation.x = 0.22 - pointer.y * 0.08;
 
     // l'auto gira lenta sulla pedana; il mouse la orienta
-    turntable.rotation.y = idleYaw + state.rotY + state.spin + pointer.x * 0.5;
+    turntable.rotation.y = state.fixedYaw ?? idleYaw + state.rotY + state.spin + pointer.x * 0.5;
 
     chrome.opacity = state.ringsOpacity;
     ringMat.opacity = 0.9 * state.ringsOpacity;
@@ -446,12 +492,11 @@ export function createScene(canvas, { reducedMotion = false, onProgress } = {}) 
   }
 
   renderer.setAnimationLoop(() => { if (running && visible) frame(); });
-  renderer.compile(scene, camera);
-  onProgress && onProgress(1);
   document.addEventListener('visibilitychange', () => { running = !document.hidden; });
 
   const color = new THREE.Color();
   return {
+    ready,
     state,
     layout,
     uniforms,

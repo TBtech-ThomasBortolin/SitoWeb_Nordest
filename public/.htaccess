@@ -28,6 +28,7 @@ ErrorDocument 404 /index.html
 <IfModule mod_mime.c>
   AddType image/webp .webp
   AddType font/woff2 .woff2
+  AddType model/gltf-binary .glb
   AddType application/manifest+json .webmanifest
 </IfModule>
 
@@ -42,6 +43,7 @@ ErrorDocument 404 /index.html
   ExpiresByType image/webp "access plus 30 days"
   ExpiresByType image/jpeg "access plus 30 days"
   ExpiresByType image/svg+xml "access plus 30 days"
+  ExpiresByType model/gltf-binary "access plus 30 days"
 </IfModule>
 
 <IfModule mod_headers.c>

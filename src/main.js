@@ -99,11 +99,15 @@ async function initWorld() {
   try {
     const { createScene } = await import('./scene.js');
     setLoad(0.7);
-    world = createScene($('#scene'), { reducedMotion: reduced, onProgress: () => setLoad(1) });
+    world = createScene($('#scene'), { reducedMotion: reduced, onProgress: setLoad });
+    // aspetta il modello 3D, ma non più di 8 secondi
+    if (world) await Promise.race([world.ready, new Promise((r) => setTimeout(r, 8000))]);
+    setLoad(1);
   } catch (err) {
     console.warn('WebGL non disponibile', err);
   }
   if (!world) document.body.classList.add('no-webgl');
+  if (import.meta.env.DEV) window.__world = world;
   return world;
 }
 

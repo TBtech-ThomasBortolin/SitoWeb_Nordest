@@ -468,6 +468,8 @@ main { overflow-x: clip; }
 .foot__brand { display: flex; gap: 12px; align-items: flex-start; color: var(--text); }
 .foot__logo { width: 44px; height: 44px; flex: none; }
 .foot__legal { font-size: .75rem; }
+.foot__credits { margin: 32px auto 0; font-size: .72rem; color: #7d8590; }
+.foot__credits a { color: var(--muted); }
 .foot__big {
   font-family: var(--f-display); font-weight: 700; font-size: clamp(2.2rem, 12.4vw, 14rem); line-height: .8; margin: 40px 0 -0.12em;
   text-align: center; white-space: nowrap;

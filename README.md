@@ -13,7 +13,7 @@ npm run build    # output in dist/
 ## Struttura
 
 - `index.html` — contenuti, SEO, dati strutturati (schema.org AutoBodyShop)
-- `src/scene.js` — scena WebGL: SUV in stile Stelvio modellato a codice, pedana girevole, laser, particelle
+- `src/scene.js` — scena WebGL: Alfa Romeo Stelvio da `public/models/stelvio.glb` (con auto procedurale di riserva), pedana girevole, laser, particelle
 - `src/main.js` — smooth scroll, animazioni allo scroll, selettore vernice, form preventivo
 - `src/style.css` — stile (font self-hosted, nessuna richiesta a Google Fonts)
 - `public/` — immagini, favicon, `.htaccess` (Apache), robots, sitemap
@@ -43,6 +43,14 @@ Resta disattivato finché non si impostano, in GitHub → *Settings → Secrets 
 | Secret | `NETSONS_FTP_PASSWORD` | password dell'account FTP |
 
 I vecchi indirizzi (`servizi.htm`, `contatti.htm`, `dovesiamo.htm`) sono reindirizzati con 301 dal `.htaccess`.
+
+## Modello 3D
+
+`public/models/stelvio.glb` deriva da *Alfa Romeo Stelvio* di **EDOTONY** (MakerWorld, licenza **CC BY-SA 4.0**).
+Modifiche: conversione da 3MF, divisione in parti per materiale (carrozzeria, vetri, gomme, cerchi,
+plastiche, fari, fanali), scudetto anteriore reso uniforme, semplificazione al 20% e compressione meshopt.
+Per la licenza ShareAlike il file modificato resta distribuito con la stessa licenza CC BY-SA 4.0;
+i crediti sono nel footer del sito.
 
 ## Da completare
 
